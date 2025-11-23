@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Learning Academy</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <div class="container">
+
+
+        {% include 'navbar.html' %}
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Academy Overview</h5>
+                <p class="card-text">Manage and track all courses, trainers, and students efficiently.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Academy Statistics</h5>
+                <p>Total Courses: {{ courses_count }}</p>
+                <p>Total Trainers: {{ trainers_count }}</p>
+                <p>Total Students: {{ students_count }}</p>
+            </div>
+        </div>
+
+    </div> <!-- End of container -->
+</body>
+
+</html>

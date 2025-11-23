@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Learning Academy</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        {% include 'navbar.html' %}
+
+        <h2>Students at the academy</h2>
+
+        <table>
+            <thead>
+
+
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Active</th>
+                    <th>Course</th>
+                    <th>Trainer</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.full_name }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.is_active }}</td>
+                    <td>{{ student.enrolled_course }}</td>
+                    <td>{{ student.enrolled_trainer }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> <!-- End of container -->
+</body>
+
+</html>

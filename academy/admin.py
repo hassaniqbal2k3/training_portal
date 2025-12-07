@@ -16,11 +16,11 @@ class TrainerAdmin(admin.ModelAdmin):
 
 class StudentAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'email', 'is_active',
-                    'enrolled_course', 'enrolled_trainer')
+                    'enrolled_course', 'enrolled_trainer', 'student_photo')
     list_filter = ('is_active', 'enrolled_course', 'enrolled_trainer')
     search_fields = ('first_name', 'last_name', 'email')
-    readonly_fields = ('enrolled_course', 'enrolled_trainer')
-    
+    readonly_fields = ('enrolled_course', 'enrolled_trainer', 'student_photo')
+
 
 # Register your models here.
 

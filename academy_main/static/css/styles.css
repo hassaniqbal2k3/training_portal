@@ -5,31 +5,88 @@
     box-sizing: border-box;
 }
 
+:root {
+    --card-bg: #eef6ff;
+    /* very light blue */
+    --card-border: #d7e8ff;
+    /* soft blue border */
+    --card-shadow: rgba(30, 64, 175, 0.06);
+    /* faint blue shadow */
+    --card-accent: #7c9cff;
+    --page-bg: #f3f4f6;
+    /* overall page background: light gray */
+    /* accent for title underline or top stripe */
+    --card-text: #0f172a;
+    /* dark text for contrast */
+    --table-header-bg: #6f67b3;
+    /* light lavender gradient that ties to navbar accents */
+    --table-header-gradient: linear-gradient(90deg, #efe8ff 0%, #e3dcff 50%, #d6cffb 100%);
+    background: var(--page-bg);
+    --table-row-alt: #eef6ff;
+    /* light-blue alternate row */
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #333;
+    background: linear-gradient(135deg, #fbfafd 0%, #ecf3f4 100%);
+    background-color: rgba(0, 0, 0, 0);
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-image: linear-gradient(135deg, rgb(251, 250, 253) 0%, rgb(236, 243, 244) 100%);
+    background-size: auto;
+    background-origin: padding-box;
+    background-clip: border-box;
+    color: #534a4a;
     line-height: 1.6;
     padding: 20px;
-    margin: 20px;
+    margin: 0px;
     min-height: 100vh;
 }
 
+/* Ensure a centered content wrapper even if Bootstrap isn't loaded */
 .container {
     max-width: 1200px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
+    width: calc(100% - 48px);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.25rem;
+    padding-left: 24px;
+    padding-top: 1rem;
+    padding-right: 24px;
+    box-sizing: border-box;
+}
+
+/* Fallback responsive table wrapper if Bootstrap's is not available */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Page header utility: heading on left, action (button) on right. Works with or without Bootstrap */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.page-header h2 {
+    margin: 0;
+    padding: 0;
 }
 
 /* Navbar Styles */
 nav {
-    background: #2c3e50;
-    padding: 1rem 2rem;
+    background: #181a91b2;
+    /* increase vertical padding so navbar appears standard height */
+    padding: 1rem 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -39,32 +96,23 @@ nav .logo {
     font-weight: bold;
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-}
-
-nav li {
-    display: inline-block;
-}
-
-nav button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-    color: #ffffff !important;
-    border: none;
-    padding: 0.75rem 1.8rem;
-    cursor: pointer;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+table th {
+    padding: 1.2rem 1.5rem;
+    text-align: center;
+    font-size: 1.05rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-    -webkit-text-fill-color: #ffffff;
+    letter-spacing: 0.8px;
+    color: #ffffff;
+    position: relative;
+}
+
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+-webkit-text-fill-color: #ffffff;
 }
 
 nav button:hover {
@@ -75,25 +123,238 @@ nav button:hover {
     -webkit-text-fill-color: #ffffff;
 }
 
-/* Content Area */
-.content {
-    padding: 3rem;
-}
-
-/* Card Styles */
-.card {
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 2rem auto;
-    max-width: 900px;
-    transition: all 0.3s ease;
+/* Ensure navbar spans full width */
+.navbar {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem 1.25rem;
+    transition: transform .18s ease, box-shadow .18s ease;
     overflow: hidden;
 }
 
+/* Navbar inner layout and responsive toggle */
+.nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    position: relative;
+    min-height: 64px;
+}
+
+.navbar-brand {
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+
+.nav-links {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list .nav-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 0.9rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.nav-list .nav-link:hover {
+    transform: translateY(-2px);
+}
+
+.nav-text {
+    color: whitesmoke;
+    font-size: 0.95rem;
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+/* Desktop layout: position left / center / right exactly */
+@media (min-width: 769px) {
+    .nav-inner {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .navbar-brand {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0.25rem 0.5rem;
+    }
+
+    .nav-links {
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 0.75rem;
+    }
+
+    /* remove default list spacing and ensure links align to the right edge */
+    .nav-list {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .nav-list .nav-link {
+        padding: 0.65rem 1.2rem;
+        font-size: 1rem;
+    }
+
+    .nav-text {
+        position: absolute;
+        /* move slightly left of center so welcome sits between logo and center */
+        left: 30%;
+        transform: translateX(-30%);
+        white-space: nowrap;
+    }
+
+    /* welcome pill spacing to keep distance from right-side buttons */
+    .nav-welcome {
+        margin-right: 0.6rem;
+        margin-left: 0.4rem;
+        padding: 0.35rem 0.7rem;
+    }
+}
+
+/* Toggle (hidden checkbox) and label (hamburger) */
+.nav-toggle {
+    display: none;
+}
+
+.nav-toggle-label {
+    display: none;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.nav-toggle-label .hamburger,
+.nav-toggle-label .hamburger::before,
+.nav-toggle-label .hamburger::after {
+    display: block;
+    width: 26px;
+    height: 3px;
+    background: #fff;
+    border-radius: 3px;
+    position: relative;
+}
+
+.nav-toggle-label .hamburger::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 0;
+}
+
+.nav-toggle-label .hamburger::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 0;
+}
+
+/* Responsive: collapse nav into a toggle on small screens */
+@media (max-width: 768px) {
+
+    /* Wrap the inner row so we can place the welcome text on its own row */
+    .nav-inner {
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    /* keep brand and toggle on the first row */
+    .navbar-brand {
+        order: 1;
+        flex: 0 0 auto;
+    }
+
+    .nav-toggle-label {
+        display: block;
+        order: 1;
+        margin-left: auto;
+    }
+
+    /* welcome text becomes a full-width second row */
+    .nav-text {
+        order: 2;
+        width: 100%;
+        text-align: left;
+        padding: 0.5rem 0 0;
+        margin: 0 0 0.5rem 0;
+        color: #fff;
+    }
+
+    /* collapsed links appear below the welcome text */
+    .nav-links {
+        display: none;
+        order: 3;
+        width: 100%;
+        margin-top: 0.5rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* When toggled, show links under the welcome text */
+    .nav-toggle:checked+.nav-toggle-label+.nav-links {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        right: 0.9rem;
+    }
+
+    .nav-list .nav-link {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 0.75rem 1rem;
+    }
+
+    /* Ensure welcome label stays above the collapsed menu and has its own spacing */
+    .nav-welcome {
+        display: block;
+        z-index: 3;
+        margin-bottom: 0.5rem;
+        padding: 0.5rem 0.5rem;
+        background: rgba(255, 255, 255, 0.02);
+    }
+
+    .nav-toggle-label {
+        z-index: 4;
+    }
+}
+
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(30, 64, 175, 0.10);
 }
 
 .card-body {
@@ -101,12 +362,12 @@ nav button:hover {
 }
 
 .card-title {
-    color: #2c3e50;
+    color: var(--card-text);
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 1rem;
     padding-bottom: 0.75rem;
-    border-bottom: 3px solid #667eea;
+    border-bottom: 3px solid var(--card-accent);
 }
 
 .card-text {
@@ -157,48 +418,205 @@ p {
     line-height: 1.8;
 }
 
-/* Table Styles */
-table {
-    width: 85%;
-    margin: 3rem auto;
-    border-collapse: collapse;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+/* Welcome label inside navbar: own span with padding and responsive behavior */
+.nav-welcome {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    margin: 0 0.6rem;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.03);
+    color: inherit;
+    font-weight: 600;
+    max-width: 60vw;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-table tr:first-child {
-    background: #2c3e50;
+
+/* Table Styles */
+table {
+    width: 100%;
+    margin: 1.5rem 0;
+    /* use separate so rounded corners for the header can show */
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+    overflow: hidden;
+    /* Allow columns to size to their content for a natural layout */
+    table-layout: auto;
+    word-wrap: break-word;
+}
+
+table thead tr {
+    /* header uses a light lavender gradient matching the site accent */
+    background: var(--table-header-gradient);
 }
 
 table th {
-    padding: 1.2rem;
-    text-align: center;
-    font-size: 1.1rem;
+    padding: 1.2rem 1.5rem;
+    text-align: left;
+    font-size: 1.05rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    background: #2c3e50;
+    letter-spacing: 0.8px;
     color: #ffffff;
+    position: relative;
+}
+
+/* Rounded corners for thead on the outer table */
+table thead tr th:first-child {
+    border-top-left-radius: 8px;
+}
+
+table thead tr th:last-child {
+    border-top-right-radius: 8px;
+}
+
+/* Keep some columns centered (ID, Photo, Action) for visual balance */
+table th:nth-child(1),
+table td:nth-child(1),
+table th:nth-child(2),
+table td:nth-child(2),
+table th:last-child,
+table td:last-child {
+    text-align: center;
 }
 
 table td {
     padding: 1rem;
     text-align: center;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #e6eefc;
+    background: #ffffff;
+    /* ensure cells align content vertically and horizontally */
+    vertical-align: middle;
+}
+
+/* Center inline content inside cells (e.g., action links/icons) */
+/* Center inline content inside cells (e.g., action links/icons) */
+table td>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Action link/button styling inside action cells */
+table td>div a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem 0.6rem;
+    border-radius: 6px;
+    color: var(--card-accent);
+    background: transparent;
+    text-decoration: none;
+    transition: background-color .15s ease, color .15s ease, transform .12s ease;
+}
+
+table td>div a:hover {
+    background: rgba(124, 156, 255, 0.10);
+    color: #3450d1;
+    transform: translateY(-2px);
+}
+
+/* Accent for action links/icons inside table cells */
+table th {
+    padding: 1.2rem 1.5rem;
+    text-align: center;
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--card-text);
+    position: relative;
+}
+
+/* Make table cells wrap long content and break words when necessary */
+table th,
+table td {
+    white-space: normal;
+    word-break: break-word;
+    vertical-align: middle;
+}
+
+/* Ensure header cells are centered horizontally and vertically */
+table thead th {
+    text-align: center;
+    vertical-align: middle;
+    padding: 1.2rem 1.5rem;
+}
+
+/* Force header background on the TH itself (overrides Bootstrap .table styles) */
+.table thead th,
+.table-responsive table thead th,
+table.table thead th {
+    background: var(--table-header-gradient) !important;
+    color: var(--card-text) !important;
+}
+
+/* Re-apply rounded corners on first/last TH with higher specificity */
+.table thead th:first-child,
+.table-responsive table thead th:first-child,
+table.table thead th:first-child {
+    border-top-left-radius: 8px;
+}
+
+.table thead th:last-child,
+.table-responsive table thead th:last-child,
+table.table thead th:last-child {
+    border-top-right-radius: 8px;
+}
+
+/* Constrain commonly narrow columns but allow header text to wrap comfortably */
+table th:nth-child(1),
+table td:nth-child(1) {
+    /* IDs stay compact but allow enough room for header text */
+    min-width: 8rem;
+    max-width: 12rem;
+    white-space: normal;
+    /* allow wrapping if needed */
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
+}
+
+table th:nth-child(2),
+table td:nth-child(2) {
+    width: 5.5rem;
+    max-width: 6rem;
+}
+
+table th:last-child,
+table td:last-child {
+    width: 8rem;
+    max-width: 10rem;
+}
+
+/* Ensure images and other content do not overflow cells */
+table img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+table tbody tr {
+    transition: background 0.25s ease;
+}
+
+table tbody tr:hover {
+    background: rgba(124, 156, 255, 0.06);
+    /* very subtle hover */
+}
+
+/* Alternate rows: odd = white, even = light-blue */
+table tbody tr:nth-child(odd) td {
     background: #ffffff;
 }
 
-table tr {
-    transition: background 0.3s ease;
-}
-
-table tr:hover:not(:first-child) {
-    background: #f5f5f5;
-}
-
-table tr:nth-child(even):not(:first-child) {
-    background: #f9f9f9;
+table tbody tr:nth-child(even) td {
+    background: var(--table-row-alt);
 }
 
 /* Footer */

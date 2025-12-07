@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainer Details</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body style="background-color: lavenderblush;">
+
+    <div class="container" style="color: blueviolet;">
+        {% include 'navbar.html' %}
+        <div class="card" style="margin-top: 20px; ">
+            <div class="card-body">
+                <h5 class="card-title">Trainer Details for {{ trainer.full_name }}</h5>
+                {% if trainer.trainer_photo %}
+                <img src="{{ trainer.trainer_photo.url }}" alt="Trainer Image"
+                    style="width:150px; height:150px; border-radius:50%;">
+                {% else %}
+                <img src="{% static 'default.png' %}" alt="Default Image"
+                    style="width:150px; height:150px; border-radius:50%;">
+                {% endif %}
+                <p class="card-text">Name: {{ trainer.full_name }}</p>
+                <p class="card-text">Email: {{ trainer.email }}</p>
+                <p class="card-text">Expertise: {{ trainer.expertise }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

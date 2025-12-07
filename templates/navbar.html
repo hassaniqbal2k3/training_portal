@@ -1,9 +1,36 @@
-<nav>
-    <div class="logo">The Learning Academy</div>
-    <ul>
-        <li><button><a href="/home/">Home</a></button></li>
-        <li><button><a href="/academy/courses/">Courses</a></button></li>
-        <li><button><a href="/academy/trainers/">Trainers</a></button></li>
-        <li><button><a href="/academy/students/">Students</a></button></li>
-    </ul>
+<nav class="navbar">
+    <div class="nav-inner">
+        <a class="navbar-brand" href="/home/">Learn With Hassan</a>
+
+        <!-- CSS-only toggle -->
+        <div class="nav-text">
+            <span class="nav-welcome">
+                {% if user.is_authenticated %}
+                Welcome {{ user.username }}!
+                {% else %}
+                Welcome, Guest! Please login or register
+                {% endif %}
+            </span>
+        </div>
+
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+        <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
+            <span class="hamburger"></span>
+        </label>
+
+        <div class="nav-links">
+            <ul class="nav-list">
+                <li><a class="nav-link" href="/home/">Home</a></li>
+                <li><a class="nav-link" href="/courses/">Courses</a></li>
+                <li><a class="nav-link" href="/trainers/">Trainers</a></li>
+                <li><a class="nav-link" href="/students/">Students</a></li>
+                {% if user.is_authenticated %}
+                <li><a class="nav-link" href="/logout/">Logout</a></li>
+                {% else %}
+                <li><a class="nav-link" href="/login/">Login</a></li>
+                <li><a class="nav-link" href="/register/">Register</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
 </nav>
